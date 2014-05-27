@@ -4,7 +4,7 @@ under development
 
 ## DONE
 
-- `importpaths` command
+- `list` command
 
 ## TODO
 
