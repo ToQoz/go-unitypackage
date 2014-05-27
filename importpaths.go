@@ -1,4 +1,4 @@
-package importpath
+package main
 
 import (
 	"archive/tar"
@@ -17,8 +17,7 @@ type asset struct {
 	importPath string
 }
 
-// All returns slice of filelist
-func All(unitypackagePath string) ([]string, error) {
+func importpaths(unitypackagePath string) ([]string, error) {
 	f, err := os.Open(unitypackagePath)
 	if err != nil {
 		return nil, err

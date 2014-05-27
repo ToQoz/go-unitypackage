@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/ToQoz/go-unitypackage/importpath"
 	"os"
 )
 
@@ -12,7 +11,7 @@ func main() {
 
 	switch flag.Arg(0) {
 	case "importpaths":
-		paths, err := importpath.All(flag.Arg(1))
+		paths, err := importpaths(flag.Arg(1))
 
 		if err != nil {
 			fmt.Fprint(os.Stderr, err.Error())
