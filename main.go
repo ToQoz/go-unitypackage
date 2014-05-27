@@ -10,8 +10,8 @@ func main() {
 	flag.Parse()
 
 	switch flag.Arg(0) {
-	case "importpaths":
-		paths, err := importpaths(flag.Arg(1))
+	case "list":
+		paths, err := list(flag.Arg(1))
 
 		if err != nil {
 			fmt.Fprint(os.Stderr, err.Error())

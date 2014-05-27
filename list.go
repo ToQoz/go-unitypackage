@@ -17,7 +17,7 @@ type asset struct {
 	importPath string
 }
 
-func importpaths(unitypackagePath string) ([]string, error) {
+func list(unitypackagePath string) ([]string, error) {
 	f, err := os.Open(unitypackagePath)
 	if err != nil {
 		return nil, err
