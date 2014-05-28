@@ -3,13 +3,13 @@ package main
 func list(unitypackagePath string) ([]string, error) {
 	paths := []string{}
 
-	assetInfoL, err := getAssetInfoList(unitypackagePath)
+	assetInfos, err := getAssetInfos(unitypackagePath)
 
 	if err != nil {
 		return nil, err
 	}
 
-	for _, info := range assetInfoL {
+	for _, info := range assetInfos {
 		paths = append(paths, info.importPath)
 	}
 

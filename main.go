@@ -18,17 +18,18 @@ type assetInfo struct {
 	importPath string
 }
 
-type assetInfoList []assetInfo
+// inspired by path/filepath.byName
+type byImportPath []assetInfo
 
-func (l assetInfoList) Len() int {
+func (l byImportPath) Len() int {
 	return len(l)
 }
 
-func (l assetInfoList) Swap(i, j int) {
+func (l byImportPath) Swap(i, j int) {
 	l[i], l[j] = l[j], l[i]
 }
 
-func (l assetInfoList) Less(i, j int) bool {
+func (l byImportPath) Less(i, j int) bool {
 	return l[i].importPath < l[j].importPath
 }
 
@@ -89,7 +90,9 @@ func main() {
 	os.Exit(0)
 }
 
-func getAssetInfoList(unitypackagePath string) (assetInfoList, error) {
+// getAssetInfos returns slice of assetInfo.
+// Infos is strange, but it is used in go std pkg.
+func getAssetInfos(unitypackagePath string) ([]assetInfo, error) {
 	f, err := os.Open(unitypackagePath)
 	if err != nil {
 		return nil, err
@@ -110,7 +113,7 @@ func getAssetInfoList(unitypackagePath string) (assetInfoList, error) {
 	tr := tar.NewReader(gzr)
 
 	assetIDs := []string{}
-	assetInfoL := assetInfoList{}
+	assetInfoL := byImportPath{}
 
 	for {
 		hdr, err := tr.Next()
@@ -145,7 +148,7 @@ func getAssetInfoList(unitypackagePath string) (assetInfoList, error) {
 		}
 	}
 
-	result := assetInfoList{}
+	result := byImportPath{}
 
 	for _, assetID := range assetIDs {
 		found := false

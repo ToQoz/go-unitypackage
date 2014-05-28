@@ -12,7 +12,7 @@ import (
 )
 
 func install(unitypackagePath string) error {
-	l, err := getAssetInfoList(unitypackagePath)
+	ais, err := getAssetInfos(unitypackagePath)
 
 	if err != nil {
 		return err
@@ -52,7 +52,7 @@ func install(unitypackagePath string) error {
 			segments := strings.Split(hdr.Name, "/")
 			assetID := segments[len(segments)-2]
 
-			for _, info := range l {
+			for _, info := range ais {
 				if assetID == info.id {
 					err := os.MkdirAll(filepath.Dir(info.importPath), os.ModeDir)
 					if err != nil {
