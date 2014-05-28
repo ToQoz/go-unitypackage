@@ -2,15 +2,23 @@
 
 under development
 
-## DONE
+```
+go-unitypackage is a utility for *unitypackage
 
-- `list` command
+Usage:
+
+	go-unitypackage command <unitypackage path>
+
+The commands are:
+
+    list      list of assets in unitypackage
+    install   install unitypackage to current working dir.
+    uninstall uninstall unitypackage from current working dir.
+```
 
 ## TODO
 
 - Write documentation
-- create `install` command
-- create `uninstall` command
 
 ## See also
 
