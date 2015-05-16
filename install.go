@@ -54,7 +54,7 @@ func install(unitypackagePath string) error {
 
 			for _, info := range ais {
 				if assetID == info.id {
-					err := os.MkdirAll(filepath.Dir(info.importPath), os.ModeDir)
+					err := os.MkdirAll(filepath.Dir(info.importPath), 0777)
 					if err != nil {
 						return err
 					}
